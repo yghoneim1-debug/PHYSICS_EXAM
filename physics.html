@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Exam Study Hub</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Orbitron:wght@500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #e2e8f0;
+        }
+        .header-font { font-family: 'Orbitron', sans-serif; }
+        .module-card {
+            background-color: #161b22;
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 30px rgba(56, 189, 248, 0.4);
+        }
+        .tab-button { transition: all 0.3s ease; }
+        .tab-button.active {
+            color: #10b981;
+            border-color: #10b981 !important;
+            background-color: #1e293b;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .collapsible-content.expanded {
+            max-height: 500px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .concept-box {
+            background-color: #1f2937;
+            border-left: 4px solid #f97316;
+        }
+        .definition-item {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .definition-item:hover { background-color: #1e293b; }
+    </style>
+</head>
+<body class="p-4 md:p-12">
+<div class="max-w-7xl mx-auto">
+    <header class="text-center mb-12 p-8 bg-indigo-900 rounded-2xl shadow-2xl border-b-8 border-cyan-400">
+        <h1 class="header-font text-5xl md:text-7xl font-bold text-cyan-400 uppercase tracking-widest">
+            <span class="text-emerald-400">PHYSICS</span> SIMULATOR
+        </h1>
+        <p class="mt-4 text-xl md:text-2xl text-gray-300">Exam Revision: Waves, Energy, & Optics Modules</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="flex flex-wrap justify-center mb-8 bg-gray-800 rounded-xl shadow-lg p-2 gap-2">
+        <button class="tab-button header-font text-base md:text-lg font-semibold py-3 px-4 md:px-8 border-b-4 border-transparent text-gray-400 hover:text-cyan-400" data-target="wave-properties">Module 1: Wave Properties</button>
+        <button class="tab-button header-font text-base md:text-lg font-semibold py-3 px-4 md:px-8 border-b-4 border-transparent text-gray-400 hover:text-cyan-400" data-target="wave-energy">Module 2: Energy & Behavior</button>
+        <button class="tab-button header-font text-base md:text-lg font-semibold py-3 px-4 md:px-8 border-b-4 border-transparent text-gray-400 hover:text-cyan-400" data-target="wave-optics">Module 3: Wave Optics</button>
+        <button class="tab-button header-font text-base md:text-lg font-semibold py-3 px-4 md:px-8 border-b-4 border-transparent text-gray-400 hover:text-cyan-400" data-target="review-problems">Module 4: Review Focus</button>
+    </div>
+
+    <!-- Content Sections -->
+    <main id="content-container">
+
+        <!-- MODULE 1 -->
+        <section id="wave-properties" class="tab-content hidden animate-fadeIn">
+            <h2 class="header-font text-3xl font-bold text-emerald-400 mb-6 border-l-4 border-emerald-400 pl-4">MODULE 1: CORE WAVE PROPERTIES (L1)</h2>
+            <p class="mb-8 text-gray-400">Click on any core concept to reveal the simplified definition and relationship.</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="module-card p-6 rounded-xl">
+                    <h3 class="header-font text-2xl text-sky-400 mb-4">Key Definitions</h3>
+                    <div class="space-y-4">
+                        <div class="definition-item p-3 rounded-lg bg-gray-900" onclick="toggleConcept('def-mechanical')">
+                            <p class="font-bold text-lg text-red-400">Mechanical Waves <span class="text-sm text-gray-400 italic">| Requires Medium</span></p>
+                            <div id="def-mechanical" class="collapsible-content text-sm text-gray-300">
+                                <p>Result from the <strong>oscillation of matter</strong>. They need a physical substance (<strong>medium</strong>) like water, air, or rope to travel through. They transport <strong>energy</strong>, not bulk matter.</p>
+                            </div>
+                        </div>
+                        <div class="definition-item p-3 rounded-lg bg-gray-900" onclick="toggleConcept('def-transverse')">
+                            <p class="font-bold text-lg text-yellow-400">Transverse Waves <span class="text-sm text-gray-400 italic">| Example: Light, Water</span></p>
+                            <div id="def-transverse" class="collapsible-content text-sm text-gray-300">
+                                <p>The particles of the medium move perpendicular (&perp;) to the direction in which the wave travels. Think of an 'S' shape on a rope: the highest point is the crest, and the lowest point is the trough.</p>
+                            </div>
+                        </div>
+                        <div class="definition-item p-3 rounded-lg bg-gray-900" onclick="toggleConcept('def-longitudinal')">
+                            <p class="font-bold text-lg text-teal-400">Longitudinal Waves <span class="text-sm text-gray-400 italic">| Example: Sound</span></p>
+                            <div id="def-longitudinal" class="collapsible-content text-sm text-gray-300">
+                                <p>The particles of the medium move parallel (&parallel;) to the direction in which the wave travels. This creates areas of crowding (compression) and spreading out (rarefaction).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-card p-6 rounded-xl">
+                    <h3 class="header-font text-2xl text-sky-400 mb-4">The Wave Speed Equation</h3>
+                    <div class="concept-box p-4 rounded-lg mb-4 text-center">
+                        <p class="header-font text-4xl text-white">v = fλ</p>
+                        <p class="text-gray-400 mt-2">Speed = Frequency × Wavelength</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-3 rounded-lg bg-gray-900" onclick="toggleConcept('eq-v')">
+                            <p class="font-semibold text-orange-400">Wave speed (v) = how fast the wave moves.</p>
+                            <div id="eq-v" class="collapsible-content text-sm text-gray-300">
+                                <p>The speed at which the <strong>energy</strong> travels through the medium. It <strong>depends only on the medium</strong>.</p>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-gray-900" onclick="toggleConcept('eq-f')">
+                            <p class="font-semibold text-orange-400">Frequency (f) and Period (T)</p>
+                            <div id="eq-f" class="collapsible-content text-sm text-gray-300">
+                                <p>Frequency (f, in Hz) is the number of cycles that pass a point per second. Period (T, in seconds) is the time taken for one cycle. They are inverses: <strong>T = 1/f</strong>.</p>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-gray-900" onclick="toggleConcept('eq-lambda')">
+                            <p class="font-semibold text-orange-400">Wavelength (λ)</p>
+                            <div id="eq-lambda" class="collapsible-content text-sm text-gray-300">
+                                <p>The distance over which a wave's shape repeats (e.g., crest to crest). When wave speed (v) is constant, if frequency (f) increases (&uarr;), the wavelength (λ) decreases (&darr;).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 2 -->
+        <section id="wave-energy" class="tab-content hidden animate-fadeIn">
+            <h2 class="header-font text-3xl font-bold text-emerald-400 mb-6 border-l-4 border-emerald-400 pl-4">MODULE 2: ENERGY AND BEHAVIOR (L2)</h2>
+            <p class="mb-8 text-gray-400">How waves interact with their environment and each other.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="module-card p-6 rounded-xl md:col-span-1">
+                    <h3 class="header-font text-2xl text-red-400 mb-4">Energy & Amplitude</h3>
+                    <p class="text-gray-300 mb-4">Amplitude is the maximum displacement from rest position (midline).</p>
+                    <div class="concept-box p-3 rounded-lg">
+                        <p class="font-bold text-lg text-white mb-1">Key Relationship</p>
+                        <p class="text-sm text-gray-300">Energy carried by a wave is proportional to the square of amplitude (E ∝ A²).</p>
+                        <p class="text-sm text-gray-300 mt-2">For example, if amplitude doubles (A → 2A), energy quadruples (E → 4E).</p>
+                    </div>
+                </div>
+                <div class="module-card p-6 rounded-xl md:col-span-2">
+                    <h3 class="header-font text-2xl text-red-400 mb-4">Interaction Checklist</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-3 rounded-lg bg-gray-900 cursor-pointer" onclick="toggleConcept('behavior-reflection')">
+                            <p class="font-semibold text-orange-400">1. Reflection</p>
+                            <div id="behavior-reflection" class="collapsible-content text-sm text-gray-300">
+                                <p>Wave bounces off a barrier. Angle of incidence = angle of reflection (θ<sub>i</sub> = θ<sub>r</sub>).</p>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-gray-900 cursor-pointer" onclick="toggleConcept('behavior-refraction')">
+                            <p class="font-semibold text-orange-400">2. Refraction</p>
+                            <div id="behavior-refraction" class="collapsible-content text-sm text-gray-300">
+                                <p>Wave changes direction entering a new medium. Speed and wavelength change; frequency remains constant.</p>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-gray-900 cursor-pointer" onclick="toggleConcept('behavior-diffraction')">
+                            <p class="font-semibold text-orange-400">3. Diffraction</p>
+                            <div id="behavior-diffraction" class="collapsible-content text-sm text-gray-300">
+                                <p>Wave spreads through openings or around obstacles. Maximum diffraction occurs when λ ≈ opening size.</p>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-gray-900 cursor-pointer" onclick="toggleConcept('behavior-interference')">
+                            <p class="font-semibold text-orange-400">4. Interference</p>
+                            <div id="behavior-interference" class="collapsible-content text-sm text-gray-300">
+                                <p>Two or more waves meet and combine. Constructive → higher amplitude. Destructive → lower or zero amplitude.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3 -->
+        <section id="wave-optics" class="tab-content hidden animate-fadeIn">
+            <h2 class="header-font text-3xl font-bold text-emerald-400 mb-6 border-l-4 border-emerald-400 pl-4">MODULE 3: GEOMETRIC OPTICS (L3)</h2>
+            <p class="mb-8 text-gray-400">Applying reflection and refraction to mirrors and lenses.</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="module-card p-6 rounded-xl">
+                    <h3 class="header-font text-2xl text-sky-400 mb-4">Lens/Mirror Equation</h3>
+                    <div class="concept-box p-4 rounded-lg mb-4 text-center">
+                        <p class="header-font text-4xl text-white">1/f = 1/d<sub>o</sub> + 1/d<sub>i</sub></p>
+                        <p class="text-gray-400 mt-2">f: focal length, d<sub>o</sub>: object distance, d<sub>i</sub>: image distance</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-lg text-orange-400">Magnification (M)</h4>
+                        <p class="text-gray-300">M = h<sub>i</sub>/h<sub>o</sub> = -d<sub>i</sub>/d<sub>o</sub></p>
+                        <ul class="list-disc list-inside text-sm text-gray-300">
+                            <li>M negative → Image is real and inverted.</li>
+                            <li>M positive → Image is virtual and upright.</li>
+                            <li>|M| > 1 → Image is magnified.</li>
+                            <li>|M| < 1 → Image is reduced.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-card p-6 rounded-xl">
+                    <h3 class="header-font text-2xl text-sky-400 mb-4">Lens & Mirror Quick Rules</h3>
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-lg bg-gray-900 cursor-pointer" onclick="toggleConcept('optics-converging')">
+                            <p class="font-semibold text-yellow-400">Converging (Convex Lens / Concave Mirror)</p>
+                            <div id="optics-converging" class="collapsible-content text-sm text-gray-300">
+                                <p>Forms real (inverted) or virtual (upright) images depending on object's position relative to f and 2f.</p>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-gray-900 cursor-pointer" onclick="toggleConcept('optics-diverging')">
+                            <p class="font-semibold text-yellow-400">Diverging (Concave Lens / Convex Mirror)</p>
+                            <div id="optics-diverging" class="collapsible-content text-sm text-gray-300">
+                                <p>Always forms virtual, upright, reduced images. Focal length (f) is negative.</p>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-gray-900 cursor-pointer" onclick="toggleConcept('optics-plane')">
+                            <p class="font-semibold text-yellow-400">Plane Mirror</p>
+                            <div id="optics-plane" class="collapsible-content text-sm text-gray-300">
+                                <p>Virtual, upright, same size. Distance behind mirror = distance in front. Shows lateral inversion.</p>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-gray-900 cursor-pointer" onclick="toggleConcept('optics-refraction')">
+                            <p class="font-semibold text-yellow-400">Snell's Law / Critical Angle</p>
+                            <div id="optics-refraction" class="collapsible-content text-sm text-gray-300">
+                                <p>n<sub>1</sub> sin θ<sub>1</sub> = n<sub>2</sub> sin θ<sub>2</sub>. Critical angle occurs when refraction = 90°.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 4 -->
+        <section id="review-problems" class="tab-content hidden animate-fadeIn">
+            <h2 class="header-font text-3xl font-bold text-emerald-400 mb-6 border-l-4 border-emerald-400 pl-4">MODULE 4: HIGH-YIELD REVIEW FOCUS</h2>
+            <p class="mb-8 text-gray-400">Focus on common exam traps and key facts.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="module-card p-6 rounded-xl">
+                    <h3 class="header-font text-2xl text-orange-400 mb-4">Wave Facts to Memorize</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Sound waves diffract more easily than light due to longer wavelength.</li>
+                        <li>Frequency never changes between media; only speed and wavelength change.</li>
+                        <li>Pitch depends entirely on frequency.</li>
+                        <li>Shallow water wave speed: v = √(g d).</li>
+                        <li>Increasing rope tension F<sub>T</sub> increases wave speed (v ∝ √F<sub>T</sub>).</li>
+                    </ul>
+                </div>
+                <div class="module-card p-6 rounded-xl">
+                    <h3 class="header-font text-2xl text-orange-400 mb-4">Optics Sign Rules</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Focal length (f): positive for converging, negative for diverging.</li>
+                        <li>Image distance (d<sub>i</sub>): positive → real, negative → virtual.</li>
+                        <li>Low n → High n: ray bends toward normal. High n → Low n: bends away; risk of TIR.</li>
+                    </ul>
+                </div>
+                <div class="module-card p-6 rounded-xl">
+                    <h3 class="header-font text-2xl text-orange-400 mb-4">Standing Waves</h3>
+                    <p class="text-gray-300 mb-3">Formed by interference of incident and reflected waves. Harmonic number n = number of antinodes.</p>
+                    <div class="concept-box p-3 rounded-lg">
+                        <p class="font-bold text-lg text-white mb-1">Fundamental Harmonic (n=1)</p>
+                        <p class="text-sm text-gray-300">Length L = 1/2 λ. Wavelength λ = 2L/n.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    function switchTab(targetId) {
+        tabContents.forEach(c => { c.classList.add('hidden'); c.classList.remove('animate-fadeIn'); });
+        tabButtons.forEach(b => b.classList.remove('active'));
+        const target = document.getElementById(targetId);
+        if(target){ target.classList.remove('hidden'); setTimeout(()=>target.classList.add('animate-fadeIn'),10); }
+        const activeTab = document.querySelector(`[data-target="${targetId}"]`);
+        if(activeTab) activeTab.classList.add('active');
+    }
+    tabButtons.forEach(b => b.addEventListener('click',()=>switchTab(b.getAttribute('data-target'))));
+    switchTab('wave-properties');
+
+    function toggleConcept(id){
+        const content = document.getElementById(id);
+        const parent = content.closest('.module-card');
+        if(parent){
+            parent.querySelectorAll('.collapsible-content.expanded').forEach(el=>{if(el.id!==id) el.classList.remove('expanded');});
+        }
+        content.classList.toggle('expanded');
+    }
+</script>
+</body>
+</html>
